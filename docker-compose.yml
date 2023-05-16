@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  yolov7obb:
+    image: yolov7obb-notebook:latest
+    shm_size: '2gb'
+    environment:
+      NVIDIA_VISIBLE_DEVICES: 1
+      NVIDIA_DRIVER_CAPABILITIES: all
+      PYTHONPATH: /opt/app/external/Torch-Pruning:/opt/app
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities:
+              - gpu
+
+    network_mode: "host"
+    volumes:
+      - ./data:/opt/app/data
+      - ./yolov7obb:/opt/app/yolov7obb
+      - ./notebook:/opt/app/notebook
+      - ./runs:/opt/app/runs
+      - ./experiments:/opt/app/experiments
+      - ./models-weights:/opt/app/weights
+      - ./external:/opt/app/external

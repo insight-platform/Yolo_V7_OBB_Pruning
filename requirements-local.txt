@@ -1,0 +1,43 @@
+#-i https://download.pytorch.org/whl/cu116
+# Usage: pip install -r requirements-local.txt
+
+# Base ----------------------------------------
+matplotlib>=3.2.2
+numpy>=1.18.5
+opencv-python>=4.1.1
+Pillow>=7.1.2
+PyYAML>=5.3.1
+requests>=2.23.0
+scipy>=1.4.1
+tqdm>=4.41.0
+protobuf<4.21.3
+torch
+torchvision
+
+# Logging -------------------------------------
+tensorboard>=2.10.0
+# wandb
+
+# Plotting ------------------------------------
+pandas>=1.1.4
+seaborn>=0.11.0
+
+# Export --------------------------------------
+#coremltools>=4.1  # CoreML export
+onnx>=1.9.0  # ONNX export
+onnx-simplifier>=0.3.6  # ONNX simplifier
+#scikit-learn==0.19.2  # CoreML quantization
+#tensorflow>=2.4.1  # TFLite export
+#tensorflowjs>=3.9.0  # TF.js export
+#openvino-dev  # OpenVINO export
+
+# Extras --------------------------------------
+jupyterlab==3.4.6
+setuptools==59.5.0
+ipywidgets==8.0.2
+albumentations==1.2.1
+ipython  # interactive notebook
+psutil  # system utilization
+thop  # FLOPs computation
+# pycocotools>=2.0  # COCO mAP
+# roboflow

@@ -1,0 +1,12 @@
+**/__pycache__
+.idea/
+.vscode/
+.gitignore
+.git
+.github/
+docker/
+.dockerignore
+Makefile
+**/_skbuild/
+**/dist/
+**/*.egg-info/

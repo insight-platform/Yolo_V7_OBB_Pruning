@@ -1,0 +1,44 @@
+# Usage: pip install -r requirements.txt
+
+# Base ----------------------------------------
+setuptools
+dataclasses_json>=0.5.7
+beartype>=0.11.0
+botocore>=1.28.0
+boto3_type_annotations>=0.3.1
+boto3>=1.25.0
+shapely>=1.8.5
+matplotlib>=3.2.2
+numpy>=1.18.5
+opencv-python>=4.1.1
+Pillow>=7.1.2
+PyYAML>=5.3.1
+requests>=2.23.0
+scipy>=1.4.1
+tqdm==4.64.1
+protobuf<4.21.3
+lxml==4.9.1
+cvd==0.1.0
+
+# Logging -------------------------------------
+tensorboard>=2.10.0
+# wandb
+
+# Plotting ------------------------------------
+pandas>=1.1.4
+seaborn>=0.11.0
+
+# Export --------------------------------------
+onnx>=1.9.0  # ONNX export
+onnx-simplifier>=0.3.6  # ONNX simplifier
+
+# Extras --------------------------------------
+jupyterlab==3.6.3
+ipywidgets==8.0.6
+#jupyterlab-widgets==3.0.7
+albumentations==1.3.0
+ipython  # interactive notebook
+psutil  # system utilization
+thop  # FLOPs computation
+# pycocotools>=2.0  # COCO mAP
+# roboflow

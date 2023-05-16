@@ -1,0 +1,10 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+train: /opt/app/data/datasets/ECE_FichEye_Combo_Coco_train_yolov7_3.0.0/images    # train images (relative to 'path')
+val: /opt/app/data/datasets/ECE_FichEye_Combo_Coco_val_yolov7_3.0.0/images   # val images (relative to 'path')
+test: /opt/app/data/datasets/ECE_FichEye_Combo_Coco_test_yolov7_1image_2.0.0/images   # val images (relative to 'path')
+#test: /opt/app/data/datasets/ECE_FichEye_Combo_test_1.0.0/images   # val images (relative to 'path')
+
+# Classes
+nc: 1  # number of classes
+names: ['person']  # class names
+
