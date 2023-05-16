@@ -13,12 +13,8 @@ notebook-down:
 
 download-data:
 	docker run --rm \
-		-v `pwd`/mpdels_weights:/sync_dir/data \
-		-v `pwd`/models:/sync_dir/models \
-		-v `pwd`/modules:/sync_dir/modules \
-		-v `pwd`/tests:/sync_dir/tests \
-		-v `pwd`/model_storage.ini:/opt/app/model_storage.ini \
-		-e AWS_CONFIG_FILE=/opt/app/model_storage.ini \
+		-v `pwd`/models_weights:/sync_dir/models_weights \
+		-v `pwd`/runs:/sync_dir/runs \
 		amazon/aws-cli:2.7.19 \
-		--endpoint-url `awk -F "=" '/endpoint_url/ {print $$2}' model_storage.ini` \
-		s3 sync "s3://ml-data/motion-insights/framework-examples" /sync_dir/
+		--endpoint-url https://eu-central-1.linodeobjects.com \
+		s3 sync "s3://savant-data/articles/pruning/" /sync_dir/ --no-sign-request
