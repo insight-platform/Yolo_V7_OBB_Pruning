@@ -6,7 +6,43 @@ The code for the implementation of [Yolov5_obb](https://github.com/hukaixuan1997
 
 ## Getting Started 
 This repo is based on [yolov7](https://github.com/WongKinYiu/yolov7), [yolov5_obb](https://github.com/hukaixuan19970627/yolov5_obb). 
-Please see [yolov5_obb](https://github.com/hukaixuan19970627/yolov5_obb) for data preparation.
+
+
+Requirements environment: 
+- Nvidia dGPU (Volta, Turing, Ampere, Ada Lovelace)
+- Linux OS with driver 525+
+- Docker with Compose plugin installed and configured with Nvidia Container Runtime
+- git + lfs.
+
+Prerequisites:
+
+Clone the repository with all the necessary code.
+
+``` shell
+git clone https://github.com/insight-platform/Yolo_V7_OBB_Pruning.git
+```
+
+Build docker image
+
+``` shell
+DOCKER_BUILDKIT=1 docker build --target yolov7obb -t yolov7obb:1.0 --build-arg UID=`id -u`       --build-arg GID=`id -g` --build-arg TZ=`cat /etc/timezone` --progress=plain . && docker tag yolov7obb:1.0 yolov7obb:latest
+```
+
+A docker compose file has been prepared to make it easy to start the container. You can include additional volumes if you need.
+The container automatically runs JupyterLab (http://127.0.0.1:10000) and TensorBoard (http://127.0.0.1:6006) to track learning metrics.
+
+Start container
+
+``` shell
+docker-compose up -d
+```
+
+Stop container
+
+```Shell
+docker-compose down
+```
+
 
 ## Training (Not yet train aux model)
 
