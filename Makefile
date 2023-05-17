@@ -1,6 +1,6 @@
 docker-image-build-notebook:
 	DOCKER_BUILDKIT=1 docker build --target yolov7obb -t yolov7obb:1.0 --build-arg UID=`id -u` --build-arg GID=`id -g` \
---build-arg TZ=`cat /etc/timezone` --progress=plain . && docker tag yolov7obb:1.0 yolov7obb:latest
+		--build-arg TZ=`cat /etc/timezone` --progress=plain . && docker tag yolov7obb:1.0 yolov7obb:latest
 
 
 ## Up rules
