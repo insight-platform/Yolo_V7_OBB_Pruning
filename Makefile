@@ -13,7 +13,7 @@ notebook-down:
 
 download-data:
 	docker run --rm \
-		-v `pwd`/models_weights:/sync_dir/models_weights \
+		-v `pwd`/models-weights:/sync_dir/models-weights \
 		-v `pwd`/runs:/sync_dir/runs \
 		amazon/aws-cli:2.7.19 \
 		--endpoint-url https://eu-central-1.linodeobjects.com \
