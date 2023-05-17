@@ -42,11 +42,6 @@ RUN apt-get update && apt-get install -y nodejs &&  \
     apt autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
-RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
-
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
-    jupyter nbextension enable --py --sys-prefix widgetsnbextension
-
 COPY --chown=jupyter:jupyter entrypoint.sh ${APP_PATH}
 
 USER ${UID}:${GID}
