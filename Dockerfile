@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:21.08-py3 as base
+FROM nvcr.io/nvidia/pytorch:23.04-py3 as base
 
 RUN rm -rf /opt/conda/lib/python3.8/site-packages/cv2
 
