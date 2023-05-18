@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:23.04-py3 as base
+FROM nvcr.io/nvidia/pytorch:21.08-py3 as base
 
 RUN rm -rf /opt/conda/lib/python3.8/site-packages/cv2
 
@@ -9,6 +9,10 @@ RUN apt-get update && apt-get install -yq curl unzip sudo python3-pip && \
     apt-get install -y screen build-essential git ffmpeg libsm6 libxext6 &&  \
     apt autoremove -y && \
     rm -rf /var/lib/apt/lists/*
+RUN pip uninstall -y jupyter-client jupyter-core jupyter-events jupyter-lsp \
+    jupyter-server jupyter-server-terminals jupyter-tensorboard jupyterlab \
+    jupyterlab-pygments jupyterlab-server jupyterlab-widgets jupytext
+
 
 COPY requirements-docker.txt requirements-docker.txt
 RUN pip3 install --upgrade pip
