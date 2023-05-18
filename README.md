@@ -55,26 +55,75 @@ Stop container
 docker-compose down
 ```
 
+Download all pretrained models and experiments files
 
-## Training (Not yet train aux model)
+```shell
+make download-data 
+```
+
+## Preparing dataset
+
+Open JupyterLab (http://127.0.0.1:10000) and run [prepare_datasets.ipynb](notebook%2Fprepare_datasets.ipynb)
+
+## Training 
+
+Connect to docker container
+
+```shell
+docker exec -it yolo_v7_obb_pruning_yolov7obb_1 /bin/bash
+```
 
 Single GPU training
 
 ``` shell
 # train yolov7 models
-python ./yolov7obb/train_obb.py \
-    --workers 8 \
-    --device 0 \
-    --epochs 600 \
-    --batch-size 8 \
-    --single-cls \
-    --data /opt/app/experiments/base_tram_v1.0.0/data.yaml \
-    --img 640 640 \
-    --cfg /opt/app/experiments/base_tram_v1.0.0/yolov7.yaml \
-    --weights /opt/app/weights/yolov7.pt \
-    --name yolov7model_tmp \
-    --hyp /opt/app/experiments/base_tram_v1.0.0/hyp.yaml \
-    --project /opt/app/runs/train \
-    --noautoanchor
+python /opt/app/yolov7obb/train_obb.py \
+	--workers 8 \
+	--device 0 \
+	--epochs 600 \
+	--global-batch-size 64 \
+	--gpu-batch-size 8 \
+	--single-cls \
+	--plots_debug \
+	--data /opt/app/experiments/fisheye_person_v1.0.0/data.yaml \
+	--img 640 640 \
+	--cfg /opt/app/experiments/fisheye_person_v1.0.0/yolov7.yaml \
+	--weights /opt/app/weights/yolov7.pt \
+	--name $SCRIPT_DIR_NAME \
+	--hyp /opt/app/experiments/fisheye_person_v1.0.0/hyp.yaml \
+	--project /opt/app/runs/train \
+	--sparsity \
+	--noautoanchor
 ```
+
+## Pruning model
+
+```shell
+python ./yolov7obb/pruning.py \
+    --weights ./runs/train/fisheye_person_v1.0.0/weights/best_145.pt \
+    --weights-ref ./runs/train/fisheye_person_v1.0.0/weights/init.pt \
+    -o 1.2 \
+    -r 32
+```
+
+## Exporting model to onnx
+
+```shell
+python ./yolov7obb/export.py  \
+   --weights /opt/app/runs/train/fisheye_person_v1.0.0/weights/best_145.pt  \
+   --img-size 640 640 \
+   --batch-size 1 \
+   --onnx \
+   --grid \
+   --end2end \
+   --simplify \
+   --fp16
+```
+
+## Inference and video generation
+
+You can use notebook [predict_video.ipynb](notebook%2Fpredict_video.ipynb) 
+to predict on video and generate video with bounding boxes.
+
+
 
